@@ -1,5 +1,10 @@
 # AK Consulting Group
 
+# Collaborators - 
+Kelley Castillo - Github: kacastillo
+Kate Ngyuen - Github: meomeodestroyer
+Adam
+
 **AK Office Supplies Retailer**\
 Web Frameworks Capstone Project
 --------------------------------------------------------------
