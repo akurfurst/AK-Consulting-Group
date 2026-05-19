@@ -3,7 +3,7 @@
 # Collaborators - 
 Kelley Castillo - Github: kacastillo
 Kate Ngyuen - Github: meomeodestroyer
-Adam
+Adam Kurfurst - Github: akurfurst
 
 **AK Office Supplies Retailer**\
 Web Frameworks Capstone Project
