@@ -21,3 +21,9 @@ AK Office Supplies is a professional e-commerce application focused on supplying
 
 This project serves as a portfolio-ready example of structured, maintainable web application developement.
 --------------------------------------------------------------
+
+## Database Diagram
+
+![Database Diagram](AK-Office_Supplies/public/images/db_diagram.png)
+
+---
