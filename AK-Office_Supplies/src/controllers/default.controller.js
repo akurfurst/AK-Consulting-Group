@@ -1,4 +1,4 @@
-import { featuredProduct } from '../services/default.service.js';
+import { featuredProducts } from '../services/products.service.js';
 
 export const getLanding = async (req, res) => {
     try {
