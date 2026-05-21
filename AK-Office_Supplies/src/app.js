@@ -1,5 +1,5 @@
 import express from 'express';
-import defaultRouter from './routers/ak.office.routes.js';
+import {router as defaultRouter } from './routers/ak.office.routes.js';
 
 //configure Express.js app
 const app = express();
