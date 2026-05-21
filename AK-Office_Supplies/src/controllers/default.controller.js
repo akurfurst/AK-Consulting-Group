@@ -1,9 +1,9 @@
-import { featuredProduct } from '../services/default.service.js';
+import { featuredProducts } from '../services/products.service.js';
 
-// export const getLanding = (req, res) => { maybe we can add a featured product to the landing page in the future
-//     const featured = featuredProduct();
-//     res.render('landing', { featured });
-// }; 
+export const getLanding = (req, res) => {
+    const featured = featuredProducts();
+    res.render('landing', { featured });
+};
 
 export const getLogin = (req, res) => {
     res.render('login');
