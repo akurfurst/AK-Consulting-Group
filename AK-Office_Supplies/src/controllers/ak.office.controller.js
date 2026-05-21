@@ -1,8 +1,8 @@
-import { featuredProducts } from '../services/products.service.js';
+import { featuredProducts } from '../services/ak.office.service.js';
 
 export const getLanding = async (req, res) => {
     try {
-        const featured = await featuredProduct();
+        const featured = await featuredProducts();
         res.render('index', { title: 'Home', featured });
     } catch (err) {
         console.error('Error loading landing page:', err);
@@ -20,4 +20,11 @@ export const getRegister = (req, res) => {
 
 export const getProducts = (req, res) => {
     res.render('products', { title: 'Products' });
+};
+export const getSuccess = (req, res) => {
+    res.status(200).render('200', { title: 'Success' });
+};
+
+export const getNotFound = (req, res) => {
+    res.status(404).render('404', { title: 'Page Not Found' });
 };

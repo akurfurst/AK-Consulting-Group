@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getLanding, getLogin, getRegister, getProducts, getSuccess, getNotFound } from '../controllers/default.controller.js';
+import { getLanding, getLogin, getRegister, getProducts, getSuccess, getNotFound } from '../controllers/ak.office.controller.js';
 
 const router = Router();
 
