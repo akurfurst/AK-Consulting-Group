@@ -3,10 +3,9 @@ import { Router } from "express";
 const router = Router();
 
 router.get("/", (req, res) => {
-    res.render("default", {
-        title: "MVC Starter App",
-        subtitle: "Express + EJS + Static Assets"
-    });
+    res.status(200).json({
+        message: "Server running"
+    })
 });
 
 export default router;
