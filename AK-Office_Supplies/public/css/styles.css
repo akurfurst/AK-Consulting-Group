@@ -1,11 +1,11 @@
 :root {
-    --bg: #020617;
-    --panel: #020617;
-    --card: #111827;
-    --text: #e5e7eb;
-    --muted: #9ca3af;
-    --accent: #38bdf8;
-    --border: rgba(255, 255, 255, 0.08);
+
+    --bg: #003049;
+    --panel: #669bbc;
+    --text: #FDF0D5;
+    --muted: #a8c5d8;
+    --border: #780000;
+    --red: #c1121f;
 }
 
 * {
@@ -15,8 +15,8 @@
 body {
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(180deg, #020617, #020617 280px, #0f172a);
-    color: var(--text);
+    background: linear-gradient(180deg, var(--bg), #002038);
+    color: var(--text-primary);
 }
 
 /* ===== Hero ===== */
@@ -106,7 +106,7 @@ code {
     margin-top: 1.5rem;
     padding: 0.6rem 1.3rem;
     border-radius: 8px;
-    background: var(--accent);
+    background: var(--brand-primary);
     color: #020617;
     text-decoration: none;
     font-weight: 600;
@@ -126,3 +126,4 @@ code {
     color: var(--muted);
     font-size: 0.9rem;
 }
+
