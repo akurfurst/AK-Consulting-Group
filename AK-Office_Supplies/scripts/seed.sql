@@ -1,4 +1,4 @@
-INSERT INTO products (name, category, description, image, price) VALUES
+INSERT INTO products (product_name, category, product_description, image_file, price) VALUES
     ('Ballpoint Pens - Pack of 10', 'Writing Supplies', 'Black ink ballpoint pens for everyday use.', 'ballpoint_pens.jpg', 5),
     ('Mechanical Pencils - Pack of 12', 'Writing Supplies', '0.7mm mechanical pencils with refillable lead.', 'mechanical_pencils.jpg', 8),
     ('Highlighters - Pack of 6', 'Writing Supplies', 'Assorted color highlighters for notes and documents.', 'highlighters.jpg', 6),
