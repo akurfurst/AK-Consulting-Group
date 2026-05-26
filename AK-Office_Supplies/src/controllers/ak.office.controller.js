@@ -1,10 +1,9 @@
-import { testConnection } from '../model/db.connect.js';
 import { featuredProducts } from '../services/ak.office.service.js';
 
 export const getLanding = async (req, res) => {
     try {
         const featured = await featuredProducts();
-        res.render('index', { title: 'Home', featured });
+        res.status(200).render('index', { title: 'Home', featured });
     } catch (err) {
         console.error('Error loading landing page:', err);
         res.status(500).send('Server error');
