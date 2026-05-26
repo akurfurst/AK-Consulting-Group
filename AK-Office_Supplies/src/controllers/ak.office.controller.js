@@ -1,3 +1,4 @@
+import { testConnection } from '../model/db.connect.js';
 import { featuredProducts } from '../services/ak.office.service.js';
 
 export const getLanding = async (req, res) => {
