@@ -259,3 +259,21 @@ code {
 .nav-links a:hover {
     color: var(--text);
 }
+
+/* product cards */
+.productCard{
+    border: 1px solid white;
+    padding: 3px;
+}
+
+.productCard:hover{
+    border: 2px solid yellow;
+}
+
+#allCards{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
