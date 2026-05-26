@@ -263,7 +263,9 @@ code {
 /* product cards */
 .productCard{
     border: 1px solid white;
-    padding: 3px;
+    border-radius: 7px;
+    overflow: hidden;
+    padding: 0;
 }
 
 .productCard:hover{
@@ -271,9 +273,11 @@ code {
 }
 
 #allCards{
-    display: flex;
+    display: grid;
     flex-direction: row;
-    gap: 5px;
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 1rem;
+
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    padding: 1rem;
 }
+

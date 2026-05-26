@@ -1,10 +1,12 @@
-
 <%- include('partials/header') %>
     <h1>All Products</h1>
 
     <div id="allCards">
         <% products.forEach(product => { %>
             <div class="productCard" id="<%=product.product_id%>">
+                <div class="img-wrapper">
+                    <img src="/images/products/<%= product.image_file %>" alt="<%= product.product_name %>" />
+                </div>
                 <h2><%= product.product_name %></h2>
             </div>
         <% }) %>
