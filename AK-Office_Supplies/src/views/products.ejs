@@ -1,15 +1,23 @@
 <%- include('partials/header') %>
-    <h1>All Products</h1>
 
-    <div id="allCards">
-        <% products.forEach(product => { %>
-            <div class="productCard" id="<%=product.product_id%>">
-                <div class="img-wrapper">
-                    <img src="/images/products/<%= product.image_file %>" alt="<%= product.product_name %>" />
-                </div>
-                <h2><%= product.product_name %></h2>
-            </div>
-        <% }) %>
-    </div>
+<main class="container">
+    <a class="button secondary" href="/products">← Back to Products</a>
+
+    <section class="product-card" style="margin-top: 1.5rem;">
+        <div class="img-wrapper">
+            <img
+                src="/images/products/<%= product.image_file %>"
+                alt="<%= product.product_name %>"
+                onerror="this.src='/images/default.webp'"
+            />
+        </div>
+        <div class="product-info">
+            <h3><%= product.product_name %></h3>
+            <span class="price">$<%= product.price %></span>
+            <p><strong>Category:</strong> <%= product.category %></p>
+            <p><%= product.product_description %></p>
+        </div>
+    </section>
+</main>
 
 <%- include('partials/footer') %>
