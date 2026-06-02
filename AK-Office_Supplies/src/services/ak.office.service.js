@@ -15,3 +15,4 @@ export const addProduct = product => {
 
     data.push(product);
 };
+export const productById = async (id) => await repo.getProductById(id);

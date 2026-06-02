@@ -29,3 +29,16 @@ export const getSuccess = (req, res) => {
 export const getNotFound = (req, res) => {
     res.status(404).render('404', { title: 'Page Not Found' });
 };
+
+export const getProductDetail = async (req, res) => {
+    try {
+        const product = await services.productById(req.params.id);
+        if (!product) {
+            return res.status(404).render('404', { title: 'Product Not Found' });
+        }
+        return res.status(200).render('product', { title: product.product_name, product });
+    } catch (err) {
+        console.error('Error loading product detail:', err);
+        return res.status(500).send('Server error');
+    }
+};
