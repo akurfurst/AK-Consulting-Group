@@ -22,17 +22,10 @@ export const getProducts = async (req, res) => {
     const products = await services.allProducts();
     res.render('products', { title: 'Products', products });
 };
-export const getSuccess = (req, res) => {
-    res.status(200).render('200', { title: 'Success' });
-};
 
-export const getNotFound = (req, res) => {
-    res.status(404).render('404', { title: 'Page Not Found' });
-};
-
-export const getProductDetail = async (req, res) => {
+export const getProductDetail = (req, res) => {
     try {
-        const product = await services.productById(req.params.id);
+        const product = services.findProductById(req.params.id);
         if (!product) {
             return res.status(404).render('404', { title: 'Product Not Found' });
         }
@@ -41,4 +34,12 @@ export const getProductDetail = async (req, res) => {
         console.error('Error loading product detail:', err);
         return res.status(500).send('Server error');
     }
+};
+
+export const getSuccess = (req, res) => {
+    res.status(200).render('200', { title: 'Success' });
+};
+
+export const getNotFound = (req, res) => {
+    res.status(404).render('404', { title: 'Page Not Found' });
 };
