@@ -8,6 +8,7 @@ CREATE TABLE products (
     category VARCHAR(255), /*TODO: Change to foreign key for categorys table.*/
     product_description TEXT,
     image_file VARCHAR(255),
+    quantity INT,
     price INT
 );
 
