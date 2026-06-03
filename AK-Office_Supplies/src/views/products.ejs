@@ -8,7 +8,13 @@
             <div class="img-wrapper">
                 <img src="/images/products/<%= product.image_file %>" alt="<%= product.product_name %>" />
             </div>
-            <h2><%= product.product_name %></h2>
+            <div class ="product-infor">
+                <h2><%= product.product_name %></h2>
+                <p class="category"><%= product.category %></p>
+                <p class="description"><%= product.product_description %></p>
+                <span class="price">$<%= product.price %></span>
+            </div>
+            
         </a>
     <% }) %>
 </div>
