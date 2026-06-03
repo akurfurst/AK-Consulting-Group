@@ -1,23 +1,25 @@
 <%- include('partials/header') %>
 
-<h1>All Products</h1>
+<main id="all_products">
+    <h1>All Products</h1>
 
-<div id="allCards">
-    <% products.forEach(product => { %>
-        <div class="productCard">
-            <div class="img-wrapper">
-                <img src="/images/products/<%= product.image_file %>" alt="<%= product.product_name %>" />
-            </div>
+    <div id="allCards">
+        <% products.forEach(product => { %>
+            <div class="productCard">
+                <div class="img-wrapper">
+                    <img src="/images/products/<%= product.image_file %>" alt="<%= product.product_name %>" />
+                </div>
 
-            <div class ="product-info">
-                <h2><%= product.product_name %></h2>
-                <p class="category"><%= product.category %></p>
-                <p class="description"><%= product.product_description %></p>
-                <span class="price">$<%= product.price %></span>
-                <a class="button" href ="/products/<%= product.product_id %>">View Product</a>
+                <div class ="product-info">
+                    <h2><%= product.product_name %></h2>
+                    <p class="category"><%= product.category %></p>
+                    <p class="description"><%= product.product_description %></p>
+                    <span class="price">$<%= product.price %></span>
+                    <a class="button" href ="/products/<%= product.product_id %>">View Product</a>
+                </div>
             </div>
-        </div>
-<% }) %>
-</div>
+    <% }) %>
+    </div>
+</main>
 
 <%- include('partials/footer') %>

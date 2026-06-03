@@ -263,6 +263,14 @@ code {
     color: var(--text);
 }
 
+#all_products{
+    margin: 2rem;
+
+    h1{
+        margin-left: 1rem;
+    }
+}
+
 /* product cards */
 .productCard{
     border: 1px solid white;
