@@ -7,7 +7,10 @@ const FEATURED_IDS = [1, 4, 5];
 
 export const allProducts = () => data;
 
-export const findProductById = id => data.find(p => p.id === id);
+export const findProductById = id => {
+    const numId = Number(id);
+    return data.find(p => p.product_id === numId);
+}
 
 export const featuredProducts = () => data.filter(p => FEATURED_IDS.includes(p.id));
 
