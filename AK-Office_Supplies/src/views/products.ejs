@@ -4,19 +4,20 @@
 
 <div id="allCards">
     <% products.forEach(product => { %>
-        <a class="productCard" href="/products/<%= product.product_id %>">
+        <div class="productCard">
             <div class="img-wrapper">
                 <img src="/images/products/<%= product.image_file %>" alt="<%= product.product_name %>" />
             </div>
-            <div class ="product-infor">
+
+            <div class ="product-info">
                 <h2><%= product.product_name %></h2>
                 <p class="category"><%= product.category %></p>
                 <p class="description"><%= product.product_description %></p>
                 <span class="price">$<%= product.price %></span>
+                <a class="button" href ="/products/<%= product.product_id %>">View Product</a>
             </div>
-            
-        </a>
-    <% }) %>
+        </div>
+<% }) %>
 </div>
 
 <%- include('partials/footer') %>
