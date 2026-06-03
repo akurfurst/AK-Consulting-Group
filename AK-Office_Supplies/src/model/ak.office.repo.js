@@ -21,3 +21,22 @@ export const getProductById = async (id) => {
     );
     return rows[0]; 
 };
+
+// filter
+export const getFilteredProducts = async ({ search, maxPrice }) => {
+    let query = 'SELECT * FROM products WHERE 1=1';
+    const params = [];
+
+    if (search) {
+        query += ' AND product_name LIKE ?';
+        params.push(`%${search}%`);
+    }
+
+    if (maxPrice) {
+        query += ' AND price <= ?';
+        params.push(Number(maxPrice));
+    }
+
+    const [rows] = await pool.query(query, params);
+    return rows;
+};

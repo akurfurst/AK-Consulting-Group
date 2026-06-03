@@ -1,4 +1,5 @@
 import { getAllProducts } from "../model/ak.office.repo.js";
+import * as repo from "../model/ak.office.repo.js";
 
 const data = await getAllProducts();
 // featured products
@@ -19,3 +20,7 @@ export const addProduct = product => {
     data.push(product);
 };
 export const productById = async (id) => await repo.getProductById(id);
+
+// filter
+export const filteredProducts = async ({ search, maxPrice }) =>
+     await repo.getFilteredProducts({ search, maxPrice });

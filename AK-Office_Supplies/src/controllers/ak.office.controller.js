@@ -23,9 +23,9 @@ export const getProducts = async (req, res) => {
     res.render('products', { title: 'Products', products });
 };
 
-export const getProductDetail = (req, res) => {
+export const getProductDetail = async (req, res) => {
     try {
-        const product = services.findProductById(req.params.id);
+        const product = await services.findProductById(req.params.id);
         if (!product) {
             return res.status(404).render('404', { title: 'Product Not Found' });
         }
@@ -42,4 +42,32 @@ export const getSuccess = (req, res) => {
 
 export const getNotFound = (req, res) => {
     res.status(404).render('404', { title: 'Page Not Found' });
+};
+
+// filter use getApiProducts
+export const getApiProducts = async (req, res) => {
+    try {
+        const { search, maxPrice } = req.query;
+        const products = await services.filteredProducts({ search, maxPrice });
+        
+        if (products.length === 0) {
+            return res.status(200).json({
+                success: true,
+                count: 0,
+                data: []
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            count: products.length,
+            data: products
+        });
+    } catch (err) {
+        console.error('Error fetching products here:', err);
+        return res.status(500).json({
+            success: false,
+            error: 'Server error'
+        });
+    }
 };
