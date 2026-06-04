@@ -2,6 +2,9 @@
 
 <section id="all_products">
     <h1>All Products</h1>
+    <div id="filterBar">
+    <input type="text" id="searchInput" placeholder="Search products..." />
+</div>
 
     <div id="allCards">
         <% products.forEach(product => { %>
@@ -36,5 +39,36 @@
         </div>
     </div>
 </div>
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const allCards = document.getElementById('allCards');
 
+    const renderCards = (products) => {
+        if (products.length === 0) {
+            allCards.innerHTML = '<p>No products found.</p>';
+            return;
+        }
+
+        allCards.innerHTML = products.map(product => `
+    <div class="productCard"
+         data-id="${product.product_id}"
+         data-name="${product.product_name}"
+         data-price="${product.price}"
+         data-category="${product.category}"
+         data-image="${product.image_file}"
+         data-description="${product.product_description}">
+        <img src="/images/products/${product.image_file}" 
+             alt="${product.product_name}"
+             onerror="this.src='/images/default.webp'" />
+        <h3>${product.product_name}</h3>
+        <p class="price">$${product.price}</p>
+    </div>
+        `).join('');
+    };
+    searchInput.addEventListener('input', async () => {
+        const res = await fetch(`/api/products?search=${searchInput.value}`);
+        const json = await res.json();
+        renderCards(json.data);
+    });
+</script>
 <%- include('partials/footer') %>

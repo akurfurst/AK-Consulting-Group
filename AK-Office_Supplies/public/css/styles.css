@@ -376,3 +376,28 @@ code {
 .modal-close:hover {
     background: #9b0e18;
 }
+
+/* Filter Bar for SEARCH */
+#filterBar {
+    padding: 1rem 1.5rem;
+}
+
+#filterBar input {
+    width: 400px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid white;
+    background: transparent;
+    color: var(--text);
+    font-size: 1rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+#filterBar input::placeholder {
+    color: var(--muted);
+}
+
+#filterBar input:focus {
+    outline: none;
+    border-color: var(--red);
+}
