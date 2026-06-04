@@ -1,40 +1,65 @@
-<%- include('partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= title %> | AK Office Supplies</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
 
-<main id="all_products">
-    <h1>All Products</h1>
+    <!-- NAV — matches styles.css. Swap for your own <%- include('partials/nav') %> if you have one -->
+    <nav class="navbar">
+        <a class="nav-brand" href="/">AK Office</a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        </ul>
+    </nav>
 
-    <form id="filter_form">
-        <legend>Filter Results</legend>
-        <label for="category">Category</label>
-        <select id="category" name="category">
-            <option value="none">Select Category</option>
-            <% let categories = []; %>
+    <section id="all_products">
+        <h1>All Products</h1>
+
+        <div id="allCards">
             <% products.forEach(product => { %>
-                <% if (!categories.includes(product.category)) { %>
-                    <option value="<%= product.category %>"><%= product.category %></option>
-                    <% categories.push(product.category); %>
-                <% } %>
+                <div class="productCard"
+                     data-id="<%= product.product_id %>"
+                     data-name="<%= product.product_name %>"
+                     data-price="<%= product.price %>"
+                     data-category="<%= product.category %>"
+                     data-image="<%= product.image_file %>"
+                     data-description="<%= product.product_description %>">
+                    <img src="/images/<%= product.image_file %>"
+                         alt="<%= product.product_name %>"
+                         onerror="this.src='/images/default.webp'" />
+                    <h3><%= product.product_name %></h3>
+                    <p class="price">$<%= product.price %></p>
+                </div>
             <% }) %>
-        </select>
-    </form>
+        </div>
+    </section>
 
-    <div id="allCards">
-        <% products.forEach(product => { %>
-            <div class="productCard">
-                <div class="img-wrapper">
-                    <img src="/images/products/<%= product.image_file %>" alt="<%= product.product_name %>" />
-                </div>
-
-                <div class ="product-info">
-                    <h2><%= product.product_name %></h2>
-                    <p class="category"><%= product.category %></p>
-                    <p class="description"><%= product.product_description %></p>
-                    <span class="price">$<%= product.price %></span>
-                    <a class="button" href ="/products/<%= product.product_id %>">View Product</a>
-                </div>
+    <!-- PRODUCT MODAL — rendered once, hidden until a card is clicked -->
+    <div id="productModal" class="modal-overlay" hidden>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+            <img id="modalImage" class="modal-image" src="" alt="" />
+            <div class="modal-body">
+                <h2 id="modalTitle"></h2>
+                <p id="modalCategory" class="modal-category"></p>
+                <p id="modalPrice" class="price"></p>
+                <p id="modalDescription"></p>
+                <a id="modalLink" class="button" href="#">View full page</a>
             </div>
-    <% }) %>
+        </div>
     </div>
-</main>
 
-<%- include('partials/footer') %>
+    <footer class="footer">
+        Node + Express MVC Starter
+    </footer>
+
+    <script src="/js/default.js" defer></script>
+</body>
+</html>
