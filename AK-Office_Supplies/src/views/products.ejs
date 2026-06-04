@@ -1,65 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title><%= title %> | AK Office Supplies</title>
-    <link rel="stylesheet" href="/css/styles.css" />
-</head>
-<body>
+<%- include('partials/header') %>
 
-    <!-- NAV — matches styles.css. Swap for your own <%- include('partials/nav') %> if you have one -->
-    <nav class="navbar">
-        <a class="nav-brand" href="/">AK Office</a>
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/products">Products</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-        </ul>
-    </nav>
+<section id="all_products">
+    <h1>All Products</h1>
 
-    <section id="all_products">
-        <h1>All Products</h1>
-
-        <div id="allCards">
-            <% products.forEach(product => { %>
-                <div class="productCard"
-                     data-id="<%= product.product_id %>"
-                     data-name="<%= product.product_name %>"
-                     data-price="<%= product.price %>"
-                     data-category="<%= product.category %>"
-                     data-image="<%= product.image_file %>"
-                     data-description="<%= product.product_description %>">
-                    <img src="/images/<%= product.image_file %>"
-                         alt="<%= product.product_name %>"
-                         onerror="this.src='/images/default.webp'" />
-                    <h3><%= product.product_name %></h3>
-                    <p class="price">$<%= product.price %></p>
-                </div>
-            <% }) %>
-        </div>
-    </section>
-
-    <!-- PRODUCT MODAL — rendered once, hidden until a card is clicked -->
-    <div id="productModal" class="modal-overlay" hidden>
-        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-            <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
-            <img id="modalImage" class="modal-image" src="" alt="" />
-            <div class="modal-body">
-                <h2 id="modalTitle"></h2>
-                <p id="modalCategory" class="modal-category"></p>
-                <p id="modalPrice" class="price"></p>
-                <p id="modalDescription"></p>
-                <a id="modalLink" class="button" href="#">View full page</a>
+    <div id="allCards">
+        <% products.forEach(product => { %>
+            <div class="productCard"
+                 data-id="<%= product.product_id %>"
+                 data-name="<%= product.product_name %>"
+                 data-price="<%= product.price %>"
+                 data-category="<%= product.category %>"
+                 data-image="<%= product.image_file %>"
+                 data-description="<%= product.product_description %>">
+                <img src="/images/<%= product.image_file %>"
+                     alt="<%= product.product_name %>"
+                     onerror="this.src='/images/default.webp'" />
+                <h3><%= product.product_name %></h3>
+                <p class="price">$<%= product.price %></p>
             </div>
+        <% }) %>
+    </div>
+</section>
+
+<!-- PRODUCT MODAL — rendered once, hidden until a card is clicked -->
+<div id="productModal" class="modal-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+        <img id="modalImage" class="modal-image" src="" alt="" />
+        <div class="modal-body">
+            <h2 id="modalTitle"></h2>
+            <p id="modalCategory" class="modal-category"></p>
+            <p id="modalPrice" class="price"></p>
+            <p id="modalDescription"></p>
+            <a id="modalLink" class="button" href="#">View full page</a>
         </div>
     </div>
+</div>
 
-    <footer class="footer">
-        Node + Express MVC Starter
-    </footer>
-
-    <script src="/js/default.js" defer></script>
-</body>
-</html>
+<%- include('partials/footer') %>
