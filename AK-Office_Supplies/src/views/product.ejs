@@ -5,11 +5,10 @@
 
     <section class="product-card" style="margin-top: 1.5rem;">
         <div class="img-wrapper">
-            <img
-                src="/images/products/<%= product.image_file %>"
+           <img src="/images/products/<%= product.image_file %>"
                 alt="<%= product.product_name %>"
-                onerror="this.src='/images/default.webp'"
-            />
+                onerror="this.src='/images/default.webp'" />
+
         </div>
         <div class="product-info">
             <h3><%= product.product_name %></h3>

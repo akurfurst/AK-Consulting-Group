@@ -12,9 +12,9 @@
                  data-category="<%= product.category %>"
                  data-image="<%= product.image_file %>"
                  data-description="<%= product.product_description %>">
-                <img src="/images/<%= product.image_file %>"
-                     alt="<%= product.product_name %>"
-                     onerror="this.src='/images/default.webp'" />
+               <img src="/images/products/<%= product.image_file %>"
+                alt="<%= product.product_name %>"
+                onerror="this.src='/images/default.webp'" />
                 <h3><%= product.product_name %></h3>
                 <p class="price">$<%= product.price %></p>
             </div>
@@ -32,7 +32,7 @@
             <p id="modalCategory" class="modal-category"></p>
             <p id="modalPrice" class="price"></p>
             <p id="modalDescription"></p>
-            <a id="modalLink" class="button" href="#">View full page</a>
+            <a id="modalLink" class="button" href="#">Add to cart</a>
         </div>
     </div>
 </div>

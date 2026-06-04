@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const openModal = (card) => {
         const d = card.dataset;
-        img.src = '/images/' + d.image;
+        img.src = '/images/products/' + d.image;
         img.alt = d.name;
         title.textContent = d.name;
         category.textContent = d.category;
