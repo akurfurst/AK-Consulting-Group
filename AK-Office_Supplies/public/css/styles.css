@@ -296,6 +296,13 @@ code {
     border: 2px solid yellow;
 }
 
+.productCard .description {
+    margin: 0.25rem 0.5rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
 #allCards{
     display: grid;
     flex-direction: row;
@@ -375,6 +382,13 @@ code {
 
 .modal-close:hover {
     background: #9b0e18;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 /* Filter Bar for SEARCH */

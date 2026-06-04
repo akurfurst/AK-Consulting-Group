@@ -3,8 +3,8 @@
 <section id="all_products">
     <h1>All Products</h1>
     <div id="filterBar">
-    <input type="text" id="searchInput" placeholder="Search products..." />
-</div>
+        <input type="text" id="searchInput" placeholder="Search products..." />
+    </div>
 
     <div id="allCards">
         <% products.forEach(product => { %>
@@ -15,10 +15,11 @@
                  data-category="<%= product.category %>"
                  data-image="<%= product.image_file %>"
                  data-description="<%= product.product_description %>">
-               <img src="/images/products/<%= product.image_file %>"
-                alt="<%= product.product_name %>"
-                onerror="this.src='/images/default.webp'" />
+                <img src="/images/products/<%= product.image_file %>"
+                     alt="<%= product.product_name %>"
+                     onerror="this.src='/images/default.webp'" />
                 <h3><%= product.product_name %></h3>
+                <p class="description"><%= product.product_description %></p>
                 <p class="price">$<%= product.price %></p>
             </div>
         <% }) %>
@@ -35,10 +36,15 @@
             <p id="modalCategory" class="modal-category"></p>
             <p id="modalPrice" class="price"></p>
             <p id="modalDescription"></p>
-            <a id="modalLink" class="button" href="#">Add to cart</a>
+
+            <div class="modal-actions">
+                <button id="addToCart" class="button">Add to Cart</button>
+                <a id="modalLink" class="button secondary" href="#">View full page</a>
+            </div>
         </div>
     </div>
 </div>
+
 <script>
     const searchInput = document.getElementById('searchInput');
     const allCards = document.getElementById('allCards');
@@ -57,18 +63,21 @@
          data-category="${product.category}"
          data-image="${product.image_file}"
          data-description="${product.product_description}">
-        <img src="/images/products/${product.image_file}" 
+        <img src="/images/products/${product.image_file}"
              alt="${product.product_name}"
              onerror="this.src='/images/default.webp'" />
         <h3>${product.product_name}</h3>
+        <p class="description">${product.product_description}</p>
         <p class="price">$${product.price}</p>
     </div>
         `).join('');
     };
+
     searchInput.addEventListener('input', async () => {
         const res = await fetch(`/api/products?search=${searchInput.value}`);
         const json = await res.json();
         renderCards(json.data);
     });
 </script>
+
 <%- include('partials/footer') %>
