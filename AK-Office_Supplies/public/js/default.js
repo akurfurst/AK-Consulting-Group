@@ -73,6 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const searchInput = document.getElementById('searchInput');
 const categoryInput = document.getElementById('category');
+const maxPriceInput = document.getElementById('max_price');
+const minPriceInput = document.getElementById('min_price');
 const allCards = document.getElementById('allCards');
 
 const renderCards = (products) => {
@@ -115,5 +117,29 @@ categoryInput.addEventListener('input', async () => {
         json = await res.json();
     }
     //console.log(categoryInput.value);
+    renderCards(json.data);
+});
+
+maxPriceInput.addEventListener('input', async () => {
+    let res, json;
+    if(maxPriceInput.value <= 0 || !maxPriceInput.value){
+        res = await fetch(`/api/products`);
+        json = await res.json();
+    }else{
+        res = await fetch(`/api/products?maxPrice=${maxPriceInput.value}`);
+        json = await res.json();
+    }
+    renderCards(json.data);
+})
+
+minPriceInput.addEventListener('input', async () => {
+    let res, json;
+    if(minPriceInput.value <= 0 || !minPriceInput.value){
+        res = await fetch(`/api/products`);
+        json = await res.json();
+    }else{
+        res = await fetch(`/api/products?minPrice=${minPriceInput.value}`);
+        json = await res.json();
+    }
     renderCards(json.data);
 })

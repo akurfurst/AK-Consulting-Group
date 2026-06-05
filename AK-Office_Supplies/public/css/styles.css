@@ -411,6 +411,7 @@ code {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+
 #filterBar label[for="category"] {
     order: 1;
     color: var(--muted);
@@ -418,8 +419,16 @@ code {
     font-weight: 600;
 }
 
+#filterBar .number_filter{
+    width: 200px !important;
+}
+
+#filterBar .number_filter {
+    width: 240px;
+}
+
 #filterBar #category {
-    order: 2;
+
     width: 240px;
     padding: 0.6rem 1.2rem;
     border-radius: 8px;

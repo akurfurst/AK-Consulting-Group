@@ -22,5 +22,5 @@ export const addProduct = product => {
 export const productById = async (id) => await repo.getProductById(id);
 
 // filter
-export const filteredProducts = async ({ search, maxPrice, category }) =>
-     await repo.getFilteredProducts({ search, maxPrice, category });
+export const filteredProducts = async ({ search, category, maxPrice, minPrice }) =>
+     await repo.getFilteredProducts({ search, category, maxPrice, minPrice });

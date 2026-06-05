@@ -23,7 +23,7 @@ export const getProductById = async (id) => {
 };
 
 // filter
-export const getFilteredProducts = async ({ search, maxPrice, category }) => {
+export const getFilteredProducts = async ({ search, category, maxPrice, minPrice}) => {
     let query = 'SELECT * FROM products WHERE 1=1';
     const params = [];
 
@@ -32,14 +32,21 @@ export const getFilteredProducts = async ({ search, maxPrice, category }) => {
         params.push(`%${search}%`);
     }
 
-    if (maxPrice) {
-        query += ' AND price <= ?';
-        params.push(Number(maxPrice));
+    if(category){
+        query += " AND category = ?";
+        params.push(category);
     }
 
-    if(category){
-        query += " AND category = ?"
-        params.push(category);
+    if(maxPrice && minPrice){
+        query += " AND price BETWEEN ? AND ?";
+        params.push(minPrice);
+        params.push(maxPrice);
+    }else if(maxPrice){
+        query += " AND price <= ?";
+        params.push(maxPrice);
+    }else if(minPrice){
+        query += " AND price >= ?";
+        params.push(minPrice);
     }
 
     const [rows] = await pool.query(query, params);
