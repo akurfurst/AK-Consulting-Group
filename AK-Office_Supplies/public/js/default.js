@@ -101,45 +101,50 @@ const renderCards = (products) => {
     `).join('');
 };
 
-searchInput.addEventListener('input', async () => {
-    const res = await fetch(`/api/products?search=${searchInput.value}`);
+const fetchFilteredProducts = async () => {
+    let url = "/api/products?"
+    let params = [];
+
+    if (searchInput && searchInput.value.trim()) {
+        params.push(searchInput.value);
+        url += `search=${searchInput.value}`;
+    }
+
+    if (categoryInput && categoryInput.value !== 'none') {
+        if(params.length > 0) url += "&";
+        params.push(categoryInput.value)
+        url += `category=${categoryInput.value}`;
+    }
+
+    if (maxPriceInput && maxPriceInput.value !== '') {
+        if(params.length > 0) url += "&";
+        params.push(maxPriceInput.value);
+        url += `maxPrice=${maxPriceInput.value}`;
+    }
+
+    if (minPriceInput && minPriceInput.value !== '') {
+        if(params.length > 0) url += "&";
+        params.push(minPriceInput.value);
+        url += `minPrice=${minPriceInput.value}`;
+    }
+
+    const res = await fetch(url);
     const json = await res.json();
-    renderCards(json.data);
-});
+    renderCards(json.data || []);
+};
 
-categoryInput.addEventListener('input', async () => {
-    let res, json;
-    if(categoryInput.value === 'none'){
-        res = await fetch(`/api/products`);
-        json = await res.json();
-    }else{
-        res = await fetch(`/api/products?category=${categoryInput.value}`);
-        json = await res.json();
-    }
-    //console.log(categoryInput.value);
-    renderCards(json.data);
-});
+if (searchInput) {
+    searchInput.addEventListener('input', fetchFilteredProducts);
+}
 
-maxPriceInput.addEventListener('input', async () => {
-    let res, json;
-    if(maxPriceInput.value <= 0 || !maxPriceInput.value){
-        res = await fetch(`/api/products`);
-        json = await res.json();
-    }else{
-        res = await fetch(`/api/products?maxPrice=${maxPriceInput.value}`);
-        json = await res.json();
-    }
-    renderCards(json.data);
-})
+if (categoryInput) {
+    categoryInput.addEventListener('change', fetchFilteredProducts);
+}
 
-minPriceInput.addEventListener('input', async () => {
-    let res, json;
-    if(minPriceInput.value <= 0 || !minPriceInput.value){
-        res = await fetch(`/api/products`);
-        json = await res.json();
-    }else{
-        res = await fetch(`/api/products?minPrice=${minPriceInput.value}`);
-        json = await res.json();
-    }
-    renderCards(json.data);
-})
+if (maxPriceInput) {
+    maxPriceInput.addEventListener('input', fetchFilteredProducts);
+}
+
+if (minPriceInput) {
+    minPriceInput.addEventListener('input', fetchFilteredProducts);
+}
