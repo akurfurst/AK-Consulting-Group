@@ -70,3 +70,43 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape' && !modal.hidden) closeModal();
     });
 });
+
+const searchInput = document.getElementById('searchInput');
+const categoryInput = document.getElementById('category');
+const allCards = document.getElementById('allCards');
+
+const renderCards = (products) => {
+    if (products.length === 0) {
+        allCards.innerHTML = '<p>No products found.</p>';
+        return;
+    }
+
+    allCards.innerHTML = products.map(product => `
+<div class="productCard"
+        data-id="${product.product_id}"
+        data-name="${product.product_name}"
+        data-price="${product.price}"
+        data-category="${product.category}"
+        data-image="${product.image_file}"
+        data-description="${product.product_description}">
+    <img src="/images/products/${product.image_file}"
+            alt="${product.product_name}"
+            onerror="this.src='/images/default.webp'" />
+    <h3>${product.product_name}</h3>
+    <p class="description">${product.product_description}</p>
+    <p class="price">$${product.price}</p>
+</div>
+    `).join('');
+};
+
+searchInput.addEventListener('input', async () => {
+    const res = await fetch(`/api/products?search=${searchInput.value}`);
+    const json = await res.json();
+    renderCards(json.data);
+});
+
+categoryInput.addEventListener('input', async () => {
+    const res = await fetch(`/api/products?category=${categoryInput.value}`);
+    const json = await res.json();
+    renderCards(json.data);
+})

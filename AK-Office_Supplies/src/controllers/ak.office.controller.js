@@ -47,8 +47,8 @@ export const getNotFound = (req, res) => {
 // filter use getApiProducts
 export const getApiProducts = async (req, res) => {
     try {
-        const { search, maxPrice } = req.query;
-        const products = await services.filteredProducts({ search, maxPrice });
+        const { search, maxPrice, category } = req.query;
+        const products = await services.filteredProducts({ search, maxPrice, category });
         
         if (products.length === 0) {
             return res.status(200).json({
