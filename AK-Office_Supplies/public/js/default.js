@@ -106,7 +106,14 @@ searchInput.addEventListener('input', async () => {
 });
 
 categoryInput.addEventListener('input', async () => {
-    const res = await fetch(`/api/products?category=${categoryInput.value}`);
-    const json = await res.json();
+    let res, json;
+    if(categoryInput.value === 'none'){
+        res = await fetch(`/api/products`);
+        json = await res.json();
+    }else{
+        res = await fetch(`/api/products?category=${categoryInput.value}`);
+        json = await res.json();
+    }
+    //console.log(categoryInput.value);
     renderCards(json.data);
 })
