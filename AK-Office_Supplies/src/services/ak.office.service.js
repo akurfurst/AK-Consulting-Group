@@ -13,7 +13,7 @@ export const findProductById = id => {
     return data.find(p => p.product_id === numId);
 }
 
-export const featuredProducts = () => data.filter(p => FEATURED_IDS.includes(p.id));
+export const featuredProducts = () => data.filter(p => FEATURED_IDS.includes(p.product_id));
 
 export const addProduct = product => {
 

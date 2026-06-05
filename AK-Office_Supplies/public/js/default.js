@@ -130,7 +130,7 @@ const fetchFilteredProducts = async () => {
 
     const res = await fetch(url);
     const json = await res.json();
-    renderCards(json.data || []);
+    renderCards(json.data);
 };
 
 if (searchInput) {
