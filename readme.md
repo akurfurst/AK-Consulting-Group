@@ -48,6 +48,18 @@ src/routers/   src/controllers/   src/services/   src/model/
 
 ---
 
+## Collection Documentation
+ The Postman collection itself included a description that explain:
+- What AK Consulting API provides
+- What type of response a client can expect
+This serves as the primary API documentation.
+## Published. Documentation
+The Postman collection documentation have been published publicly.
+A link to the published documentation is included below:
+<a href="https://documenter.getpostman.com/view/54271302/2sBXwsLpnH">https://documenter.getpostman.com/view/54271302/2sBXwsLpnH</a>
+
+It has been exported in JSON format and committed to this repository. 
+
 ## Getting Started
 
 ### Prerequisites
