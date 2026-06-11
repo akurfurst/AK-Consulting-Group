@@ -1,0 +1,272 @@
+{
+  "info": {
+    "_postman_id": "6bd3b0a4-4632-4555-9d2e-d8ac45098b4e",
+    "name": "AK Office Supplies API",
+    "description": "# **AK Office Supplies API**\n\n### A RESTful API for the AK Office Supplies e-commerce storefront.\n\n### Base URL: [http://localhost:3000](http://localhost:3000)\n\n### Resources:\n\n- Products: Browse and filter the product catalog\n    \n\n### Endpoints:\n\n- GET /api/products - Returns all products as JSON\n    \n- GET /api/products?search={keyword} - Filter by product name\n    \n- GET /api/products?category={category} - Filter by category\n    \n- GET /api/products?minPrice={price} - Filter by minimum price\n    \n- GET /api/products?maxPrice={price} - Filter by maximum price\n    \n- GET /api/products?minPrice={min}&maxPrice={max} - Filter by price range\n    \n- GET /products/:id - View individual product detail page\n    \n\n##### All API responses follow this structure:  \n{  \n\"success\": true/false,  \n\"count\": number,  \n\"data\": \\[...\\]  \n}",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54271302",
+    "_collection_link": "https://go.postman.co/collection/54271302-6bd3b0a4-4632-4555-9d2e-d8ac45098b4e?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get All Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products"
+          ]
+        },
+        "description": "Returns all products from the AK Office Supplies database.\n\nEndpoint: GET /api/products\n\nQuery Parameters:\n\n- search (optional): Filter products by name keyword. Example: ?search=pen\n    \n- maxPrice (optional): Filter products at or under a price. Example: ?maxPrice=10\n    \n\nExpected Response:\n\n- 200 OK: Returns JSON with success, count, and data array\n    \n- 500 Internal Server Er"
+      },
+      "response": []
+    },
+    {
+      "name": "Search by Keyword",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/products?search=pen",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products"
+          ],
+          "query": [
+            {
+              "key": "search",
+              "value": "pen"
+            }
+          ]
+        },
+        "description": "Searches products by name keyword.\n\nEndpoint: GET /api/products?search={keyword}\n\nQuery Parameters:\n\n- search (required): Keyword to match against product names. Example: ?search=pen\n    \n\nExpected Response:\n\n- 200 OK: Returns matching products with success, count, and data array\n    \n- 200 OK with empty array: No products matched the keyword\n    \n\nExample Response:  \n{  \n\"success\": true,  \n\"count\": 3,  \n\"data\": \\[...\\]  \n}"
+      },
+      "response": []
+    },
+    {
+      "name": "Filter MaxPrice",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/products?maxPrice=5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products"
+          ],
+          "query": [
+            {
+              "key": "maxPrice",
+              "value": "5"
+            }
+          ]
+        },
+        "description": "Filters products at or under a given price.\n\nEndpoint: GET /api/products?maxPrice={price}\n\nQuery Parameters:\n\n- maxPrice: Maximum price to filter by\n    \n\nExpected Response:\n\n- 200 OK: Returns products under or equal to maxPrice"
+      },
+      "response": []
+    },
+    {
+      "name": "Filter Search and Price",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/products?search=pen&maxPrice=8",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products"
+          ],
+          "query": [
+            {
+              "key": "search",
+              "value": "pen"
+            },
+            {
+              "key": "maxPrice",
+              "value": "8"
+            }
+          ]
+        },
+        "description": "Combines keyword search and max price filter.  \n  \nEndpoint: GET /api/products?search={keyword}&maxPrice={price}  \n  \nQuery Parameters:  \n\\- search: Keyword to match against product names  \n\\- maxPrice: Maximum price to filter by  \n  \nExpected Response:  \n\\- 200 OK: Returns products matching both filters"
+      },
+      "response": []
+    },
+    {
+      "name": "Search No Results",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/products?search=zzz",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products"
+          ],
+          "query": [
+            {
+              "key": "search",
+              "value": "zzz"
+            }
+          ]
+        },
+        "description": "{ \"success\": true, \"count\": 0, \"data\": \\[\\]}"
+      },
+      "response": []
+    },
+    {
+      "name": "Product by ID(found)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/products/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "products",
+            "1"
+          ]
+        },
+        "description": "Returns a single product by its ID.  \n  \nEndpoint: GET /products/:id  \n  \nPath Parameters:  \n\\- id: The product_id of the product to retrieve  \n  \nExpected Response:  \n\\- 200 OK: Returns the matching product page"
+      },
+      "response": []
+    },
+    {
+      "name": "Product by ID (not found)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/products/999\n",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "products",
+            "999\n"
+          ]
+        },
+        "description": "Tests 404 handling when product ID does not exist.  \n  \nEndpoint: GET /products/:id  \n  \nPath Parameters:  \n\\- id: A product_id that does not exist in the database  \n  \nExpected Response:  \n\\- 404 Not Found: Returns 404 page"
+      },
+      "response": []
+    },
+    {
+      "name": "Filter by Category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/products?category=Writing Supplies",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products"
+          ],
+          "query": [
+            {
+              "key": "category",
+              "value": "Writing Supplies"
+            }
+          ]
+        },
+        "description": "Filters products by category name.\n\nEndpoint: GET /api/products?category={category}\n\nQuery Parameters:\n\n- category: Exact category name to filter by.  \n    Available: Writing Supplies, Paper Products, Desk Accessories, Organization\n    \n\nExpected Response:\n\n- 200 OK: Returns products matching the category\n    \n\nExample Response:  \n{  \n\"success\": true,  \n\"count\": 5,  \n\"data\": \\[...\\]  \n}"
+      },
+      "response": []
+    },
+    {
+      "name": "Filter by MinPrice",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/products?minPrice=10",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products"
+          ],
+          "query": [
+            {
+              "key": "minPrice",
+              "value": "10"
+            }
+          ]
+        },
+        "description": "Filters products at or above a minimum price.\n\nEndpoint: GET /api/products?minPrice={price}\n\nQuery Parameters:\n\n- minPrice: Minimum price to filter by\n    \n\nExpected Response:\n\n- 200 OK: Returns products priced at or above minPrice\n    \n\nExample Response:  \n{  \n\"success\": true,  \n\"count\": 6,  \n\"data\": \\[...\\]  \n}"
+      },
+      "response": []
+    },
+    {
+      "name": "Filter by PriceRange",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/products?minPrice=5&maxPrice=10",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products"
+          ],
+          "query": [
+            {
+              "key": "minPrice",
+              "value": "5"
+            },
+            {
+              "key": "maxPrice",
+              "value": "10"
+            }
+          ]
+        },
+        "description": "Filters products within a price range.\n\nEndpoint: GET /api/products?minPrice={min}&maxPrice={max}\n\nQuery Parameters:\n\n- minPrice: Minimum price (inclusive)\n    \n- maxPrice: Maximum price (inclusive)\n    \n\nExpected Response:\n\n- 200 OK: Returns products within the price range\n    \n\nExample Response:  \n{  \n\"success\": true,  \n\"count\": 12,  \n\"data\": \\[...\\]  \n}"
+      },
+      "response": []
+    }
+  ]
+}
