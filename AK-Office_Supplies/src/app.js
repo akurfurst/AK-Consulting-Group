@@ -17,5 +17,6 @@ app.use(express.urlencoded({ extended: true }));
 
 //routers
 app.use("/", defaultRouter);
+app.use('/api/cart', cartRouter);
 
 export default app;
