@@ -61,51 +61,6 @@ src/routers/   src/controllers/   src/services/   src/model/
 npm install
 ```
 
-### 2. Environment variables
-
-Create a `.env` file in the project root:
-
-```
-PORT=3000
-
-DB_HOST=127.0.0.1
-DB_PORT=3307
-DB_USER=user
-DB_PASSWORD=password
-DB_NAME=office_supplies_db
-
-SESSION_SECRET=replace-with-a-long-random-string
-```
-
-On macOS, use `127.0.0.1` rather than `localhost` for `DB_HOST` so the client connects over TCP to the Docker-published port instead of a local socket.
-
-### 3. Start the database
-
-From the directory that contains `docker-compose.yml`:
-
-```bash
-docker compose up -d
-```
-
-This starts MySQL on host port `3307` (mapped to container `3306`) and phpMyAdmin at http://localhost:8080 (log in with the `DB_USER` / `DB_PASSWORD` above). The container uses `restart: always`, so it comes back automatically after a reboot.
-
-### 4. Load the schema and seed data
-
-Find the MySQL container name with `docker ps`, then:
-
-```bash
-docker exec -i <db_container_name> mysql -uuser -ppassword office_supplies_db < schema.sql
-docker exec -i <db_container_name> mysql -uuser -ppassword office_supplies_db < seed.sql
-```
-
-Run `schema.sql` first — it creates the `products` and `users` tables — then `seed.sql` to load the sample products. You can also use the phpMyAdmin **Import** tab instead of the CLI.
-
-### 5. Run the app
-
-```bash
-npm run dev
-```
-
 ---
 
 ## Routes (SSR)
