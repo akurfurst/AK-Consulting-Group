@@ -26,7 +26,10 @@ app.use(session({
 }));
 
 //routers
-app.use("/", defaultRouter);
+// cart routes must be registered before the default router, since the
+// default router ends with a catch-all 404 handler that would otherwise
+// swallow /api/cart requests
 app.use('/api/cart', cartRouter);
+app.use("/", defaultRouter);
 
 export default app;
