@@ -14,5 +14,21 @@
         <li><a href="/products">Products</a></li>
         <li><a href="/login">Login</a></li>
         <li><a href="/register">Register</a></li>
+        <li class="cart-nav-item">
+            <button id="cartToggle" class="cart-icon-btn" type="button" aria-label="Cart" aria-expanded="false" aria-controls="cartPanel">
+                Cart
+                <span id="cartCount" class="cart-count" hidden>0</span>
+            </button>
+            <div id="cartPanel" class="cart-panel" hidden>
+                <h3>Your Cart</h3>
+                <div id="cartItems" class="cart-items">
+                    <p class="cart-empty">Your cart is empty.</p>
+                </div>
+                <div class="cart-panel-footer">
+                    <p class="cart-total">Total: $<span id="cartTotal">0.00</span></p>
+                    <button id="clearCartBtn" type="button" class="button secondary">Clear Cart</button>
+                </div>
+            </div>
+        </li>
     </ul>
 </nav>

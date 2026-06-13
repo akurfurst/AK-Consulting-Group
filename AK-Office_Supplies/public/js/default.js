@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const link        = document.getElementById('modalLink');
     const addBtn      = document.getElementById('addToCart'); //for now
 
-    const cart = [];     
     let currentProduct = null;
 
     const openModal = (card) => {
@@ -41,12 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
     };
 
-    const addToCart = () => {
+    const addToCart = async () => {
         if (!currentProduct) return;
-        cart.push(currentProduct);
-        addBtn.textContent = 'Added ✓';
         addBtn.disabled = true;
-        console.log('Cart now has', cart.length, 'item(s):', cart);
+
+        const result = await window.AKCart.addItemToCart(Number(currentProduct.id), 1);
+        addBtn.textContent = result.success ? 'Added ✓' : 'Error';
+
         setTimeout(() => {
             addBtn.textContent = 'Add to Cart';
             addBtn.disabled = false;

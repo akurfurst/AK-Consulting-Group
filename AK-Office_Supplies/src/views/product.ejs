@@ -15,6 +15,13 @@
             <span class="price">$<%= product.price %></span>
             <p><strong>Category:</strong> <%= product.category %></p>
             <p><%= product.product_description %></p>
+
+            <div class="add-to-cart-row">
+                <label for="qty">Qty:</label>
+                <input type="number" id="qty" data-cart-qty min="1" value="1" />
+                <button type="button" class="add-to-cart-btn button" data-id="<%= product.product_id %>">Add to Cart</button>
+                <span class="add-to-cart-feedback" aria-live="polite"></span>
+            </div>
         </div>
     </section>
 </main>
