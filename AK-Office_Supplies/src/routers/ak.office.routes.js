@@ -1,11 +1,13 @@
 import { Router } from "express";
-import { getLanding, getLogin, getRegister, getProducts, getProductDetail, getSuccess, getNotFound, getApiProducts } from '../controllers/ak.office.controller.js';
+import { getLanding, getProducts, getProductDetail, getSuccess, getNotFound, getApiProducts } from '../controllers/ak.office.controller.js';
+import * as authCtrl from '../controllers/auth.controller.js';
 
 const router = Router();
 
 router.get('/', getLanding);
-router.get('/login', getLogin);
-router.get('/register', getRegister);
+router.get('/login', authCtrl.getLogin);
+router.get('/register', authCtrl.getRegister);
+router.post('/register', authCtrl.register);
 router.get('/products', getProducts);
 router.get('/products/:id', getProductDetail);
 router.get('/success', getSuccess);

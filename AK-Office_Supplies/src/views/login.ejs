@@ -1,10 +1,12 @@
 <%- include('partials/header') %>
 
-<form id="login_form" class="login-register">
+<form method="POST" action="/register" id="login_form" class="login-register">
 
     <h1>Welcome Back</h1>
     <legend>Login to order products</legend>
-    <p class="login-register-err">Test Error</p>
+    <% if (errors) { %>
+            <p class="error"><%= errors %></p>
+    <% } %>
     <label for="email">Email</label>
     <input type="email" name="email" id="email">
     <label for="passord">Password</label>

@@ -10,14 +10,6 @@ export const getLanding = async (req, res) => {
     }
 };
 
-export const getLogin = (req, res) => {
-    res.render('login', { title: 'Login' });
-};
-
-export const getRegister = (req, res) => {
-    res.render('register', { title: 'Register' });
-};
-
 export const getProducts = async (req, res) => {
     const products = await services.allProducts();
     res.render('products', { title: 'Products', products });

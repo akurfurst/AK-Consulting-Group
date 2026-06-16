@@ -1,15 +1,24 @@
 <%- include('partials/header') %>
 
-<form id="register_form" class="login-register">
+<form method="POST" action="/register" id="register_form" class="login-register">
 
     <h1>Create your account</h1>
     <legend>Register to order products</legend>
-    <p class="login-register-err">Test Error</p>
+    <% if (errors) { %>
+            <p class="error"><%= errors %></p>
+    <% } %>
     <label for="email">Email</label>
     <input type="email" name="email" id="email">
     <label for="passord">Password</label>
     <input type="password" name="password" id="password">
+    <label for="confirm">Confirm Password</label>
+    <input type="password" name="confirm" id="confirm">
+    <select id="role" name="role">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+    </select>
     <button type="submit" id="submit">Register</button>
+    <label for="role">Role</label>
 </form>
 
 <%- include('partials/footer') %>

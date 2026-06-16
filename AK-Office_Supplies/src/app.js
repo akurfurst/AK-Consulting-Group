@@ -6,6 +6,7 @@ import cartRouter from './routers/cart.routes.js';
 //configure Express.js app
 const app = express();
 
+
 //view engine
 app.set("view engine", "ejs");
 app.set("views", "src/views");
