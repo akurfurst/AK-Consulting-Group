@@ -11,8 +11,12 @@ export const getLanding = async (req, res) => {
 };
 
 export const getProducts = async (req, res) => {
-    const products = await services.allProducts();
-    res.render('products', { title: 'Products', products, user: req.session.user });
+    if(!req.session.user){
+        res.redirect("/")
+    }else{
+        const products = await services.allProducts();
+        res.render('products', { title: 'Products', products, user: req.session.user });
+    }
 };
 
 export const getProductDetail = async (req, res) => {
