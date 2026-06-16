@@ -4,6 +4,24 @@ export const getLogin = (req, res) => {
     res.render('login', { title: 'Login', errors: req.query.errors || null });
 };
 
+export const login = async (req, res) => {
+    const { username, password } = req.body;
+
+    const user = await authService.findUserByUsername(username);
+    const matchedPasswords = await authService.validatePassword(password, user.password);
+
+    if (!user || !matchedPasswords) {
+        return res.redirect("/login?errors=Invalid credentials");
+    }
+
+    req.session.user = {
+        userId: user.userId,
+        username: user.username,
+        role: user.role
+    }
+    return res.redirect("/");
+};
+
 export const getRegister = (req, res) => {
     res.render('register', { title: 'Register', errors: req.query.errors || null });
 };

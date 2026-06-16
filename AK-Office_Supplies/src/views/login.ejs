@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-<form method="POST" action="/register" id="login_form" class="login-register">
+<form method="POST" action="/login" id="login_form" class="login-register">
 
     <h1>Welcome Back</h1>
     <legend>Login to order products</legend>
@@ -8,7 +8,7 @@
             <p class="error"><%= errors %></p>
     <% } %>
     <label for="email">Email</label>
-    <input type="email" name="email" id="email">
+    <input type="email" name="username" id="email">
     <label for="passord">Password</label>
     <input type="password" name="password" id="password">
     <button type="submit" id="submit">Login</button>

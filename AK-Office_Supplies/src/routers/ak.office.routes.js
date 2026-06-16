@@ -6,6 +6,7 @@ const router = Router();
 
 router.get('/', getLanding);
 router.get('/login', authCtrl.getLogin);
+router.post('/login', authCtrl.login);
 router.get('/register', authCtrl.getRegister);
 router.post('/register', authCtrl.register);
 router.get('/products', getProducts);
