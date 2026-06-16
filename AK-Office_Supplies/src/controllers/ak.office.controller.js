@@ -11,28 +11,21 @@ export const getLanding = async (req, res) => {
 };
 
 export const getProducts = async (req, res) => {
-    if(!req.session.user){
-        res.redirect("/")
-    }else{
-        const products = await services.allProducts();
-        res.render('products', { title: 'Products', products, user: req.session.user });
-    }
+    const products = await services.allProducts();
+    res.render('products', { title: 'Products', products, user: req.session.user });
+
 };
 
 export const getProductDetail = async (req, res) => {
-    if(!req.session.user){
-        res.redirect("/")
-    }else{
-        try {
-            const product = await services.findProductById(req.params.id);
-            if (!product) {
-                return res.status(404).render('404', { title: 'Product Not Found', user: req.session.user });
-            }
-            return res.status(200).render('product', { title: product.product_name, product, user: req.session.user });
-        } catch (err) {
-            console.error('Error loading product detail:', err);
-            return res.status(500).send('Server error');
+    try {
+        const product = await services.findProductById(req.params.id);
+        if (!product) {
+            return res.status(404).render('404', { title: 'Product Not Found', user: req.session.user });
         }
+        return res.status(200).render('product', { title: product.product_name, product, user: req.session.user });
+    } catch (err) {
+        console.error('Error loading product detail:', err);
+        return res.status(500).send('Server error');
     }
 };
 

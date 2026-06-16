@@ -48,3 +48,15 @@ export const logout = (req, res) => {
     res.clearCookie('connect.sid');
     res.redirect('/')
 }
+
+export const requireAuth = (req, res, next) => {
+    if (req.session.user) {
+        return next();
+    }
+    if(req.url.startsWith('/api')){
+        return res.status(401).json({
+            error: "Unauthoriezed"
+        })
+    }
+    return res.redirect('/login?errors=Please log in first');
+}

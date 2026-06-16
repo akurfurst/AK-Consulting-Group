@@ -10,10 +10,10 @@ router.post('/login', authCtrl.login);
 router.get('/register', authCtrl.getRegister);
 router.post('/register', authCtrl.register);
 router.post('/logout', authCtrl.logout);
-router.get('/products', getProducts);
-router.get('/products/:id', getProductDetail);
+router.get('/products', authCtrl.requireAuth, getProducts);
+router.get('/products/:id', authCtrl.requireAuth, getProductDetail);
 router.get('/success', getSuccess);
-router.get('/api/products', getApiProducts);
+router.get('/api/products', authCtrl.requireAuth, getApiProducts);
 
 
 router.use(getNotFound); 
