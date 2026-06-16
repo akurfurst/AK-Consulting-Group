@@ -3,7 +3,7 @@ import * as services from '../services/ak.office.service.js';
 export const getLanding = async (req, res) => {
     try {
         const featured = await services.featuredProducts();
-        res.status(200).render('index', { title: 'Home', featured });
+        res.status(200).render('index', { title: 'Home', featured, user: req.session.user });
     } catch (err) {
         console.error('Error loading landing page:', err);
         res.status(500).send('Server error');
@@ -12,16 +12,16 @@ export const getLanding = async (req, res) => {
 
 export const getProducts = async (req, res) => {
     const products = await services.allProducts();
-    res.render('products', { title: 'Products', products });
+    res.render('products', { title: 'Products', products, user: req.session.user });
 };
 
 export const getProductDetail = async (req, res) => {
     try {
         const product = await services.findProductById(req.params.id);
         if (!product) {
-            return res.status(404).render('404', { title: 'Product Not Found' });
+            return res.status(404).render('404', { title: 'Product Not Found', user: req.session.user });
         }
-        return res.status(200).render('product', { title: product.product_name, product });
+        return res.status(200).render('product', { title: product.product_name, product, user: req.session.user });
     } catch (err) {
         console.error('Error loading product detail:', err);
         return res.status(500).send('Server error');
@@ -29,11 +29,11 @@ export const getProductDetail = async (req, res) => {
 };
 
 export const getSuccess = (req, res) => {
-    res.status(200).render('200', { title: 'Success' });
+    res.status(200).render('200', { title: 'Success', user: req.session.user });
 };
 
 export const getNotFound = (req, res) => {
-    res.status(404).render('404', { title: 'Page Not Found' });
+    res.status(404).render('404', { title: 'Page Not Found', user: req.session.user });
 };
 
 // filter use getApiProducts

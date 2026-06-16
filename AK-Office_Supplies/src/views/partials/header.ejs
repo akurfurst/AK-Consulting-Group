@@ -12,8 +12,16 @@
     <a class="nav-brand" href="/">AK Office Supplies</a>
     <ul class="nav-links">
         <li><a href="/products">Products</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/register">Register</a></li>
+        <% if (user) { %>
+            <li>
+            <form method="POST" action="/logout" style="display:inline;">
+                <button type="submit" class="nav-logout-btn">Logout</button>
+            </form>
+            </li>
+        <% } else { %>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        <% } %>
         <li class="cart-nav-item">
             <button id="cartToggle" class="cart-icon-btn" type="button" aria-label="Cart" aria-expanded="false" aria-controls="cartPanel">
                 Cart

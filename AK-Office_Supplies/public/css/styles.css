@@ -263,6 +263,20 @@ code {
     color: var(--text);
 }
 
+.nav-logout-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+}
+
+.nav-logout-btn:hover {
+    color: var(--text);
+}
+
 #all_products{
     margin: 2rem;
 

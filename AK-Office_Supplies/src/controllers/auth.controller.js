@@ -1,7 +1,7 @@
 import * as authService from '../services/auth.services.js';
 
 export const getLogin = (req, res) => {
-    res.render('login', { title: 'Login', errors: req.query.errors || null });
+    res.render('login', { title: 'Login', errors: req.query.errors || null, user: req.session.user });
 };
 
 export const login = async (req, res) => {
@@ -23,7 +23,7 @@ export const login = async (req, res) => {
 };
 
 export const getRegister = (req, res) => {
-    res.render('register', { title: 'Register', errors: req.query.errors || null });
+    res.render('register', { title: 'Register', errors: req.query.errors || null, user: req.session.user });
 };
 
 export const register = (req, res) => {
@@ -43,3 +43,8 @@ export const register = (req, res) => {
             return res.redirect('/register?errors=Unable to register user');
         });
 };
+
+export const logout = (req, res) => {
+    res.clearCookie('connect.sid');
+    res.redirect('/')
+}

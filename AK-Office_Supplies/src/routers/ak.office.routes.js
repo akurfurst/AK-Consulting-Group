@@ -9,6 +9,7 @@ router.get('/login', authCtrl.getLogin);
 router.post('/login', authCtrl.login);
 router.get('/register', authCtrl.getRegister);
 router.post('/register', authCtrl.register);
+router.post('/logout', authCtrl.logout);
 router.get('/products', getProducts);
 router.get('/products/:id', getProductDetail);
 router.get('/success', getSuccess);
